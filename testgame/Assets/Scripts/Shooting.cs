@@ -6,17 +6,18 @@ public class Shooting : MonoBehaviour
 {
     public Rigidbody projectile;
     public float speed = 20;
+    public bool AbleToShoot;
 
     // Use this for initialization
     void Start()
     {
-
+        AbleToShoot = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && AbleToShoot == true)
         {
             Rigidbody instantiatedProjectile = Instantiate(projectile,
                                                            transform.position,

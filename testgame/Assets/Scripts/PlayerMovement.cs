@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
     public float groundCheckDistance = 0.2f;
 
     private bool isGrounded;
-    private bool canJump = true;
+    
 
     private void Start()
     {
@@ -40,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-        if (isGrounded && Input.GetButtonDown("Jump") && canJump)
+        if (isGrounded && Input.GetButtonDown("Jump"))
         {
             Jump();
         }
@@ -56,12 +56,7 @@ public class PlayerMovement : MonoBehaviour
     private void Jump()
     {
         rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-        canJump = false;
         Invoke("EnableJump", 5.0f);
     }
 
-    private void EnableJump()
-    {
-        canJump = true;
-    }
 }
