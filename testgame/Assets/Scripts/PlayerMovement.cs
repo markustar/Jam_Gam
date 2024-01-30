@@ -9,15 +9,14 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Movement Properties")]
     public float moveSpeed = 5.0f;
-    public float rotationSpeed = 10.0f;
+    public float rotationSpeed = 10.0f; // New property for rotation speed
 
     [Header("Jumping Properties")]
     public float jumpForce = 8.0f;
     public float groundCheckDistance = 0.2f;
-    public float jumpCooldown = 5.0f; // Set the cooldown duration
 
     private bool isGrounded;
-    private bool canJump = true; // Variable to track if the player can jump
+    
 
     private void Start()
     {
@@ -27,25 +26,21 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        // Check for ground
         isGrounded = Physics.Raycast(transform.position, Vector3.down, groundCheckDistance);
 
-        // Handle movement
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
         Vector3 moveInput = new Vector3(horizontalInput, 0f, verticalInput);
         Vector3 cameraForward = mainCameraTransform.forward;
-        cameraForward.y = 0; // Keep the direction horizontal
+        cameraForward.y = 0;
 
         Vector3 moveDirection = Quaternion.LookRotation(cameraForward) * moveInput;
         Move(moveDirection);
 
-        // Handle rotation
-        RotatePlayer();
 
-        // Handle jumping with cooldown
-        if (isGrounded && Input.GetButtonDown("Jump") && canJump)
+
+        if (isGrounded && Input.GetButtonDown("Jump"))
         {
             Jump();
         }
@@ -57,25 +52,11 @@ public class PlayerMovement : MonoBehaviour
         rb.MovePosition(transform.position + movement);
     }
 
-    private void RotatePlayer()
-    {
-        Vector3 lookDirection = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
-        if (lookDirection != Vector3.zero)
-        {
-            Quaternion toRotation = Quaternion.LookRotation(lookDirection, Vector3.up);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
-        }
-    }
 
     private void Jump()
     {
         rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-        canJump = false; // Disable jumping
-        Invoke("EnableJump", jumpCooldown); // Enable jumping after the cooldown
+        Invoke("EnableJump", 5.0f);
     }
 
-    private void EnableJump()
-    {
-        canJump = true; // Enable jumping
-    }
 }

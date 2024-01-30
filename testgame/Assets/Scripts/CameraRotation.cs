@@ -17,17 +17,16 @@ public class CameraRotation : MonoBehaviour
 
     private void Update()
     {
-        // Get mouse input
+
         float mouseX = Input.GetAxis("Mouse X") * sensitivity;
         float mouseY = Input.GetAxis("Mouse Y") * sensitivity;
 
-        // Rotate the camera vertically
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
         transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
 
-        // Rotate the player horizontally
+
         transform.parent.Rotate(Vector3.up * mouseX);
     }
 }
