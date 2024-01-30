@@ -6,6 +6,7 @@ public class ThingsChanger : MonoBehaviour
 {
     public List<GameObject> things;
     private int currenThingIndex = 0;
+    public bool candleIsActive = false;
 
     void Start()
     {
@@ -21,10 +22,23 @@ public class ThingsChanger : MonoBehaviour
         {
             SwitchThing(1);
         }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            SwitchThing(2);
+        }
     }
 
     void SwitchThing(int newIndex)
     {
+        if(things[newIndex].gameObject.CompareTag("Candle"))
+        {
+            candleIsActive = true;
+        }
+
+        else
+        {
+            candleIsActive = false;
+        }
         
         things[currenThingIndex].SetActive(false);
 

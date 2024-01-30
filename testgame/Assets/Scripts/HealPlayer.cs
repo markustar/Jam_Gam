@@ -11,7 +11,7 @@ public class HealPlayer : MonoBehaviour
     private void OnTriggerEnter(Collider other) {
         if (other.gameObject.CompareTag("Player"))
         {
-            PlayerHealth.minusHealth = -1f;
+            PlayerHealth.minusHealth = -0.5f;
             shooting.AbleToShoot = false;
         }
     }
@@ -19,7 +19,7 @@ public class HealPlayer : MonoBehaviour
     private void OnTriggerExit(Collider other) {
         if (other.gameObject.CompareTag("Player"))
         {
-            PlayerHealth.minusHealth = 1f;
+            PlayerHealth.minusHealth = 0.5f;
             shooting.AbleToShoot = true;
         }
     }
