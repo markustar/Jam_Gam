@@ -9,6 +9,19 @@ public class Health : MonoBehaviour
     public HealthBar healthBar;
     public float minusHealth = 0.5f;
     public Light playerLight;
+
+    private void OnEnable()
+    {
+        //subcribes to the event on enable
+        EnemyStateManager.onAttack += TakeDamage;
+    }
+
+    private void OnDisable()
+    {
+        //unsubscribes to the event on disable
+        EnemyStateManager.onAttack -= TakeDamage;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,6 +47,16 @@ public class Health : MonoBehaviour
             timer = 0f;
             playerLight.range -= minusHealth;
             health -= minusHealth;
+        }
+    }
+
+    public void TakeDamage()
+    {
+        health = health - 2;
+
+        if(health <= 0f)
+        {
+            Debug.Log("Call game over event here");
         }
     }
 }
