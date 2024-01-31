@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class LitUpCandle : MonoBehaviour
 {
+    public Mesh newMesh;
+    public MeshFilter meshFilter;
     private bool PlayerIn = false;
     public GameObject HealZone;
     public Light LitUp;
@@ -13,6 +15,7 @@ public class LitUpCandle : MonoBehaviour
     private void Update() {
         if(PlayerIn == true && Input.GetKeyDown(KeyCode.E) && candleIsUp.candleIsActive == true)
         {
+            meshFilter.mesh = newMesh;
             LitUp.range = 7f;
             CandleIsLitUp = true;
             HealZone.SetActive(true);
