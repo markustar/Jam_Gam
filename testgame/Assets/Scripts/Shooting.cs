@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Shooting : MonoBehaviour
 {
+    public AudioSource PewPlayer;
+    public AudioClip Pew;
     public Rigidbody projectile;
     public float speed = 20;
     public bool AbleToShoot;
@@ -19,6 +21,7 @@ public class Shooting : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1") && AbleToShoot == true)
         {
+            PewPlayer.Play(0);
             Rigidbody instantiatedProjectile = Instantiate(projectile,
                                                            transform.position,
                                                            transform.rotation)
