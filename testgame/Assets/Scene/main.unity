@@ -7168,8 +7168,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e6942047ca2143429356438ee856e79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
-  rotationSpeed: 10
+  moveSpeed: 10
+  sprintSpeed: 15
   jumpForce: 6
   groundCheckDistance: 1.1
 --- !u!108 &2141145455
