@@ -6,7 +6,8 @@ public class EnemyStateManager : MonoBehaviour
 {
 
     //gets the health script on the player
-    public Health playerHealthRef;
+    private Health playerHealthRef;
+
    
     [Header("Enemy Values")]
     [SerializeField] private GameObject _enemyThisBelongsTo;   //The enemy this script belongs to
@@ -18,7 +19,7 @@ public class EnemyStateManager : MonoBehaviour
     
 
     [Header("Target")]
-    [SerializeField] private GameObject _target;
+    private GameObject _target;
 
 
     [Header("Bools")]
@@ -74,6 +75,8 @@ public class EnemyStateManager : MonoBehaviour
 
     private void Start()
     {
+        playerHealthRef = FindObjectOfType<Health>();
+        _target = GameObject.FindWithTag("Player");
         //sets the current state to be the inactive state on start up
         currentState = inactiveState;
 
