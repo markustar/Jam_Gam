@@ -120,7 +120,7 @@ NavMeshSettings:
     accuratePlacement: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: a96b50a4aaa82ae47b65fea2ddea28a7, type: 2}
 --- !u!1 &262147249
 GameObject:
   m_ObjectHideFlags: 0
@@ -487,7 +487,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &549983397
 BoxCollider:
@@ -1334,7 +1334,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a51fc943299d7bf4da2b1c6bb36c60f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 752790966}
+  enemyPrefab: {fileID: 6310315753744752424, guid: aa13b0bedf1e69f47948a543c5921a43,
+    type: 3}
   LitUp: {fileID: 1774396887}
 --- !u!1 &1589695799
 GameObject:
