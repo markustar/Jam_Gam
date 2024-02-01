@@ -8,6 +8,7 @@ TagManager:
   - HealZone
   - Candle
   - Enemy
+  - Arrow
   layers:
   - Default
   - TransparentFX
