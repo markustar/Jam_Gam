@@ -12,6 +12,10 @@ public class BulletDestroy : MonoBehaviour
             other.GetComponent<EnemyStateManager>()?.TakeDamage();
             Destroy(gameObject);
         }
+        else if(!other.gameObject.CompareTag("Player") && other.GetComponent<Collider>().isTrigger == false)
+        {
+            Destroy(gameObject);
+        }
     }
 
     void Update()
