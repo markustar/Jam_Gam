@@ -9,11 +9,16 @@ public class LitUpCandle : MonoBehaviour
     public bool PlayerIn = false;
     public GameObject HealZone;
     public Light LitUp;
-    public ThingsChanger candleIsUp;
     public bool CandleIsLitUp = false;
 
+    private ThingsChanger thingsChanger;
+
+    private void Start()
+    {
+        thingsChanger = ThingsChanger.Instance;
+    }
     private void Update() {
-        if(PlayerIn == true && Input.GetKeyDown(KeyCode.E) && candleIsUp.candleIsActive == true)
+        if(PlayerIn == true && Input.GetKeyDown(KeyCode.E) && thingsChanger.candleIsActive == true)
         {
             meshFilter.mesh = newMesh;
             LitUp.range = 7f;
