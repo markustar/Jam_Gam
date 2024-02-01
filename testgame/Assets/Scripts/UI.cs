@@ -23,11 +23,13 @@ public class UI : MonoBehaviour
         cameraRotation.sensitivity = sliderValue;
         if(Input.GetKeyDown(KeyCode.Escape) && PanelIsOpen == true) //Resume
         {
-            Cursor.lockState = CursorLockMode.Locked;
-            PanelIsOpen = false;
             Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+
+            PanelIsOpen = false;
             StopShooting.enabled = true;
             cameraRotation.enabled = true;
+
             EscapePanel.SetActive(false);
             SettingPanel.SetActive(false);
             Time.timeScale = 1f;
@@ -36,10 +38,13 @@ public class UI : MonoBehaviour
         else if(Input.GetKeyDown(KeyCode.Escape) && PanelIsOpen == false) //Pause
         {
             Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+
             PanelIsOpen = true;
-            EscapePanel.SetActive(true);
             StopShooting.enabled = false;
             cameraRotation.enabled = false;
+
+            EscapePanel.SetActive(true);
             Time.timeScale = 0f;
         }
     }
