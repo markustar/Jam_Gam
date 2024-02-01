@@ -71,6 +71,8 @@ public class GameManager : MonoBehaviour
                 break;
             case Difficulty.Test:
                 testingCandle.SetActive(true);
+                candlesUnlit++;
+                testingCandle.GetComponentInChildren<LitUpCandle>().OnLit += GameManager_OnLit;
                 break;
             default:
                 break;
