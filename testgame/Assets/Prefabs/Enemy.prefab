@@ -51,7 +51,6 @@ MonoBehaviour:
   _enemyThisBelongsTo: {fileID: 6310315753744752424}
   _rigidBody: {fileID: 6310315753744752438}
   _agent: {fileID: 6310315753744752425}
-  _target: {fileID: 0}
   _health: 3
   _speed: 2
   _canSeePlayer: 1
@@ -62,7 +61,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6310315753744752424}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: -2432090755550338912, guid: eb7390bbd02fae74b82f17a73a285cd8, type: 3}
 --- !u!23 &6310315753744752436
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -81,7 +80,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: e76c8e8aa96b4ff4e9cdf1ba87cdc26b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
