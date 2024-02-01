@@ -117,7 +117,7 @@ public class GameManager : MonoBehaviour
         if(candlesUnlit <= 0)
         {
             SetTitleTxt("Victory!");
-            SetMessageTxt("You have illuminated the darkness of this world!!!\nThankyou for playing!");
+            SetMessageTxt("You have illuminated the darkness of this world!!!\nThank you for playing!");
             GoToGameOver();
         }
 
