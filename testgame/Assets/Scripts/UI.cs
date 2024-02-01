@@ -6,14 +6,14 @@ using UnityEngine.UI;
 public class UI : MonoBehaviour
 {
     public GameObject SettingPanel;
-    [SerializeField] private Text ShowSensitivity;
-    public Slider SensitivityValue;
-    [SerializeField] private GameObject HealthBar;
-    private bool PanelIsOpen = false;
     public GameObject EscapePanel;
+    public Slider SensitivityValue;
+
+    [SerializeField] private Text ShowSensitivity;
     [SerializeField] private Shooting StopShooting;
     [SerializeField] private CameraRotation cameraRotation;
     private float sliderValue;
+    private bool PanelIsOpen = false;
     
     void Update()
     {
@@ -21,9 +21,8 @@ public class UI : MonoBehaviour
         ShowSensitivity.text = sliderValue.ToString();
 
         cameraRotation.sensitivity = sliderValue;
-        if(Input.GetKeyDown(KeyCode.Escape) && PanelIsOpen == true)
+        if(Input.GetKeyDown(KeyCode.Escape) && PanelIsOpen == true) //Resume
         {
-            HealthBar.SetActive(true);
             Cursor.lockState = CursorLockMode.Locked;
             PanelIsOpen = false;
             Cursor.visible = false;
@@ -34,9 +33,8 @@ public class UI : MonoBehaviour
             Time.timeScale = 1f;
         }
 
-        else if(Input.GetKeyDown(KeyCode.Escape) && PanelIsOpen == false)
+        else if(Input.GetKeyDown(KeyCode.Escape) && PanelIsOpen == false) //Pause
         {
-            HealthBar.SetActive(false);
             Cursor.lockState = CursorLockMode.None;
             PanelIsOpen = true;
             EscapePanel.SetActive(true);
@@ -50,7 +48,6 @@ public class UI : MonoBehaviour
     {
         EscapePanel.SetActive(false);
         SettingPanel.SetActive(true);
-
     }
 
 

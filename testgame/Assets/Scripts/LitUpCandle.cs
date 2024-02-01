@@ -6,7 +6,7 @@ public class LitUpCandle : MonoBehaviour
 {
     public Mesh newMesh;
     public MeshFilter meshFilter;
-    private bool PlayerIn = false;
+    public bool PlayerIn = false;
     public GameObject HealZone;
     public Light LitUp;
     public ThingsChanger candleIsUp;
