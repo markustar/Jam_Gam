@@ -23,12 +23,12 @@ public class PlayerMovement : MonoBehaviour
         mainCameraTransform = Camera.main.transform;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         isGrounded = Physics.Raycast(transform.position, Vector3.down, groundCheckDistance);
 
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
+        float horizontalInput = Input.GetAxisRaw("Horizontal");
+        float verticalInput = Input.GetAxisRaw("Vertical");
 
         Vector3 moveInput = new Vector3(horizontalInput, 0f, verticalInput);
         Vector3 cameraForward = mainCameraTransform.forward;
@@ -38,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
 
         // Sprinting when holding the "Shift" key
         float currentMoveSpeed = Input.GetKey(KeyCode.LeftShift) ? sprintSpeed : moveSpeed;
-        Move(moveDirection.normalized * currentMoveSpeed);
+        Move(moveDirection.normalized * currentMoveSpeed * Time.fixedDeltaTime);
 
         if (isGrounded && Input.GetButtonDown("Jump"))
         {
@@ -48,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Move(Vector3 moveDirection)
     {
-        Vector3 movement = moveDirection * Time.deltaTime;
+        Vector3 movement = moveDirection;
         rb.MovePosition(transform.position + movement);
     }
 
