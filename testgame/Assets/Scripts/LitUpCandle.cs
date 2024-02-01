@@ -1,9 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class LitUpCandle : MonoBehaviour
 {
+    public event EventHandler OnLit;
     public Mesh newMesh;
     public MeshFilter meshFilter;
     public bool PlayerIn = false;
@@ -27,6 +29,7 @@ public class LitUpCandle : MonoBehaviour
             LitUp.color = Health.Instance.playerLight.color;
             CandleIsLitUp = true;
             HealZone.SetActive(true);
+            OnLit?.Invoke(this, EventArgs.Empty);
         }
     }
 

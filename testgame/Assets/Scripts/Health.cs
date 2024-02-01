@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,6 +11,13 @@ public class Health : MonoBehaviour
     public HealthBar healthBar;
     public float minusHealth = 0.5f;
     public Light playerLight;
+
+    public event EventHandler<OnDeadEventArgs> OnDead;
+    public class OnDeadEventArgs : EventArgs
+    {
+        public string title;
+        public string message;
+    }
 
     private void Awake()
     {
@@ -31,7 +39,7 @@ public class Health : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        health = 50f;
+        health = 5f;
     }
 
     // Update is called once per frame
@@ -53,16 +61,26 @@ public class Health : MonoBehaviour
             timer = 0f;
             playerLight.range -= minusHealth;
             health -= minusHealth;
+            CheckDeath("Game Over!", "Your Flashlight ran out\nThe darkness consumed you, Try again?");
         }
     }
 
     public void TakeDamage()
     {
-        health = health - 2;
+        health -= 2;
 
-        if(health <= 0f)
+        CheckDeath("Game Over!", "Killed by Enemy, Try again?");
+    }
+
+    private void CheckDeath(string titleTxt, string messageTxt)
+    {
+        if (health <= 0f)
         {
-            Debug.Log("Call game over event here");
+            OnDead?.Invoke(this, new OnDeadEventArgs
+            {
+                title = titleTxt,
+                message = messageTxt
+            }) ;
         }
     }
 }

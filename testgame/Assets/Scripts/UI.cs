@@ -14,7 +14,12 @@ public class UI : MonoBehaviour
     [SerializeField] private CameraRotation cameraRotation;
     private float sliderValue;
     private bool PanelIsOpen = false;
-    
+
+    private void Start()
+    {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
     void Update()
     {
         sliderValue = Mathf.Round(SensitivityValue.value * 100f) / 100f;

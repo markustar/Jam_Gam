@@ -11,7 +11,11 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
-        PlayButton.onClick.AddListener(() => SceneManager.LoadScene(1));
+        PlayButton.onClick.AddListener(() => {
+            SceneManager.LoadScene(1);
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        });
         QuitButton.onClick.AddListener(() => Application.Quit());
     }
 }
