@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class HealPlayer : MonoBehaviour
 {
-    public Shooting shooting;
-    public Health PlayerHealth;
+    private Shooting shooting;
+    private Health PlayerHealth;
 
-    
+    private void Start()
+    {
+        PlayerHealth = Health.Instance;
+        shooting = Shooting.Instance;
+    }
     private void OnTriggerEnter(Collider other) {
         if (other.gameObject.CompareTag("Player"))
         {
