@@ -21,6 +21,7 @@ public class GameOver_UI : MonoBehaviour
     private void Start()
     {
         var gameManager = GameManager.Instance;
+        //gameManager.IsLoss //Differentiate if game over is lost or won
         titleTxt.text = gameManager.GameOver_TitleTxt;
         messageTxt.text = gameManager.GameOver_MessageTxt;
     }
