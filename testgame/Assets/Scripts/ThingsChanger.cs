@@ -6,7 +6,7 @@ public class ThingsChanger : MonoBehaviour
 {
     public static ThingsChanger Instance { get; private set; }
     public List<GameObject> things;
-    private int currenThingIndex = 0;
+    private int currenThingIndex = 1;//Flashlight
     public bool candleIsActive = false;
 
     private void Awake()
