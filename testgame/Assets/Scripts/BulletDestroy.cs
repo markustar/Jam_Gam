@@ -6,9 +6,15 @@ public class BulletDestroy : MonoBehaviour
 {
     private float timer;
     private void OnTriggerEnter(Collider other) {
-        if(!other.gameObject.CompareTag("Player") && other.GetComponent<Collider>().isTrigger == false)
+
+        if(other.gameObject.tag == "Enemy")
         {
-            Destroy(gameObject); // Destroy the projectile when it collides with something
+            other.GetComponent<EnemyStateManager>()?.TakeDamage();
+            Destroy(gameObject);
+        }
+        else if(!other.gameObject.CompareTag("Player") && other.GetComponent<Collider>().isTrigger == false)
+        {
+            Destroy(gameObject);
         }
     }
 

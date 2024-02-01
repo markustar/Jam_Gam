@@ -9,14 +9,13 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Movement Properties")]
     public float moveSpeed = 5.0f;
-    public float rotationSpeed = 10.0f; // New property for rotation speed
-
+    public float sprintSpeed = 10.0f; // Sprint speed
+    
     [Header("Jumping Properties")]
     public float jumpForce = 8.0f;
     public float groundCheckDistance = 0.2f;
 
     private bool isGrounded;
-    
 
     private void Start()
     {
@@ -24,21 +23,22 @@ public class PlayerMovement : MonoBehaviour
         mainCameraTransform = Camera.main.transform;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         isGrounded = Physics.Raycast(transform.position, Vector3.down, groundCheckDistance);
 
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
+        float horizontalInput = Input.GetAxisRaw("Horizontal");
+        float verticalInput = Input.GetAxisRaw("Vertical");
 
         Vector3 moveInput = new Vector3(horizontalInput, 0f, verticalInput);
         Vector3 cameraForward = mainCameraTransform.forward;
         cameraForward.y = 0;
 
         Vector3 moveDirection = Quaternion.LookRotation(cameraForward) * moveInput;
-        Move(moveDirection);
 
-
+        // Sprinting when holding the "Shift" key
+        float currentMoveSpeed = Input.GetKey(KeyCode.LeftShift) ? sprintSpeed : moveSpeed;
+        Move(moveDirection.normalized * currentMoveSpeed * Time.fixedDeltaTime);
 
         if (isGrounded && Input.GetButtonDown("Jump"))
         {
@@ -48,15 +48,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void Move(Vector3 moveDirection)
     {
-        Vector3 movement = moveDirection * moveSpeed * Time.deltaTime;
+        Vector3 movement = moveDirection;
         rb.MovePosition(transform.position + movement);
     }
-
 
     private void Jump()
     {
         rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         Invoke("EnableJump", 5.0f);
     }
-
 }

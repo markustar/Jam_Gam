@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class Shooting : MonoBehaviour
 {
+    public static Shooting Instance { get; private set; }
     public AudioSource PewPlayer;
     public AudioClip Pew;
     public Rigidbody projectile;
     public float speed = 20;
     public bool AbleToShoot;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     // Use this for initialization
     void Start()
@@ -32,5 +38,7 @@ public class Shooting : MonoBehaviour
     }
 
     // OnCollisionEnter is called when the projectile collides with another object
-    
+
+   
+
 }
