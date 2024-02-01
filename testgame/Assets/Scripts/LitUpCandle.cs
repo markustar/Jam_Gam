@@ -21,7 +21,10 @@ public class LitUpCandle : MonoBehaviour
         if(PlayerIn == true && Input.GetKeyDown(KeyCode.E) && thingsChanger.candleIsActive == true)
         {
             meshFilter.mesh = newMesh;
-            LitUp.range = 7f;
+            LitUp.transform.localPosition = new Vector3(0, 10f, 0);
+            LitUp.intensity = 80f;
+            LitUp.spotAngle = 180f;
+            LitUp.color = Health.Instance.playerLight.color;
             CandleIsLitUp = true;
             HealZone.SetActive(true);
         }

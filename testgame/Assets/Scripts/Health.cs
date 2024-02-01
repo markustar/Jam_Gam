@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
+    public static Health Instance { get; private set; }
     private float timer;
     private float health;
     public HealthBar healthBar;
     public float minusHealth = 0.5f;
     public Light playerLight;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     private void OnEnable()
     {
