@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class GameOver_UI : MonoBehaviour
 {
+    public AudioSource WinSound;
+    public AudioSource LoseSound;
     [SerializeField] private TextMeshProUGUI titleTxt;
     [SerializeField] private TextMeshProUGUI messageTxt;
     [SerializeField] private Button menuBtn;
@@ -24,6 +26,15 @@ public class GameOver_UI : MonoBehaviour
         //gameManager.IsLoss //Differentiate if game over is lost or won
         titleTxt.text = gameManager.GameOver_TitleTxt;
         messageTxt.text = gameManager.GameOver_MessageTxt;
+
+        if(titleTxt.text == "Victory!")
+        {
+            WinSound.Play(0);
+        }
+        else
+        {   
+            LoseSound.Play(0);
+        }
     }
 
 
