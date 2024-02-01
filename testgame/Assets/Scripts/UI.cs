@@ -55,5 +55,9 @@ public class UI : MonoBehaviour
         SettingPanel.SetActive(true);
     }
 
+    public void QuitApplication()
+    {
+        Application.Quit();
+    }
 
 }
