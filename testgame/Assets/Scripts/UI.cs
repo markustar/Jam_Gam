@@ -6,42 +6,50 @@ using UnityEngine.UI;
 public class UI : MonoBehaviour
 {
     public GameObject SettingPanel;
-    [SerializeField] private Text ShowSensitivity;
-    public Slider SensitivityValue;
-    [SerializeField] private GameObject HealthBar;
-    private bool PanelIsOpen = false;
     public GameObject EscapePanel;
+    public Slider SensitivityValue;
+
+    [SerializeField] private Text ShowSensitivity;
     [SerializeField] private Shooting StopShooting;
     [SerializeField] private CameraRotation cameraRotation;
     private float sliderValue;
-    
+    private bool PanelIsOpen = false;
+
+    private void Start()
+    {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
     void Update()
     {
         sliderValue = Mathf.Round(SensitivityValue.value * 100f) / 100f;
         ShowSensitivity.text = sliderValue.ToString();
 
         cameraRotation.sensitivity = sliderValue;
-        if(Input.GetKeyDown(KeyCode.Escape) && PanelIsOpen == true)
+        if(Input.GetKeyDown(KeyCode.Escape) && PanelIsOpen == true) //Resume
         {
-            HealthBar.SetActive(true);
-            Cursor.lockState = CursorLockMode.Locked;
-            PanelIsOpen = false;
             Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+
+            PanelIsOpen = false;
             StopShooting.enabled = true;
             cameraRotation.enabled = true;
+
             EscapePanel.SetActive(false);
             SettingPanel.SetActive(false);
             Time.timeScale = 1f;
         }
 
-        else if(Input.GetKeyDown(KeyCode.Escape) && PanelIsOpen == false)
+        else if(Input.GetKeyDown(KeyCode.Escape) && PanelIsOpen == false) //Pause
         {
-            HealthBar.SetActive(false);
             Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+
             PanelIsOpen = true;
-            EscapePanel.SetActive(true);
             StopShooting.enabled = false;
             cameraRotation.enabled = false;
+
+            EscapePanel.SetActive(true);
             Time.timeScale = 0f;
         }
     }
@@ -50,8 +58,11 @@ public class UI : MonoBehaviour
     {
         EscapePanel.SetActive(false);
         SettingPanel.SetActive(true);
-
     }
 
+    public void QuitApplication()
+    {
+        Application.Quit();
+    }
 
 }

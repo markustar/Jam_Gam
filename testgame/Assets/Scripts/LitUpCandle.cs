@@ -1,24 +1,35 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class LitUpCandle : MonoBehaviour
 {
+    public event EventHandler OnLit;
     public Mesh newMesh;
     public MeshFilter meshFilter;
-    private bool PlayerIn = false;
+    public bool PlayerIn = false;
     public GameObject HealZone;
     public Light LitUp;
-    public ThingsChanger candleIsUp;
     public bool CandleIsLitUp = false;
 
+    private ThingsChanger thingsChanger;
+
+    private void Start()
+    {
+        thingsChanger = ThingsChanger.Instance;
+    }
     private void Update() {
-        if(PlayerIn == true && Input.GetKeyDown(KeyCode.E) && candleIsUp.candleIsActive == true)
+        if(PlayerIn == true && Input.GetKeyDown(KeyCode.E) && thingsChanger.candleIsActive == true)
         {
             meshFilter.mesh = newMesh;
-            LitUp.range = 7f;
+            LitUp.transform.localPosition = new Vector3(0, 10f, 0);
+            LitUp.intensity = 80f;
+            LitUp.spotAngle = 180f;
+            LitUp.color = Health.Instance.playerLight.color;
             CandleIsLitUp = true;
             HealZone.SetActive(true);
+            OnLit?.Invoke(this, EventArgs.Empty);
         }
     }
 

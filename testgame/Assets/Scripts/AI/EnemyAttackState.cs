@@ -24,7 +24,8 @@ public class EnemyAttackState : EnemyBaseState
         Debug.Log("Enemy is exiting the attack state");
 
         //stops the coroutine on exit
-        enemy.StopCoroutine(Attack(enemy));
+
+        enemy?.StopCoroutine(Attack(enemy));
         
     }
 
