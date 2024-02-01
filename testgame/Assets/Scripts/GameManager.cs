@@ -47,11 +47,7 @@ public class GameManager : MonoBehaviour
         int min, max;
         switch (difficulty)
         {
-            case Difficulty.Test:
-                min = 1;
-                max = 2;
-                InstantiateCandles(min, max);
-                break;
+        
             case Difficulty.Beginner:
                 min = 5;
                 max = 8;
@@ -72,6 +68,7 @@ public class GameManager : MonoBehaviour
                 max = candles.Length;
                 InstantiateCandles(min, max);
                 break;
+            case Difficulty.Test:
             default:
                 break;
         }
