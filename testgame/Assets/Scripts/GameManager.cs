@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance {  get; private set; }
 
     [SerializeField] private GameObject[] candles;
+    [SerializeField] private GameObject testingCandle;
 
     private int candlesUnlit;
     public bool PlayerLost {  get; private set; }
@@ -69,6 +70,8 @@ public class GameManager : MonoBehaviour
                 InstantiateCandles(min, max);
                 break;
             case Difficulty.Test:
+                testingCandle.SetActive(true);
+                break;
             default:
                 break;
         }

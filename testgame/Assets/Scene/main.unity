@@ -148,7 +148,7 @@ PrefabInstance:
     - target: {fileID: 3128332558786216704, guid: 683deabb3be35a6498a279e706ce90e6,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3128332558786216829, guid: 683deabb3be35a6498a279e706ce90e6,
         type: 3}
@@ -1304,6 +1304,12 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &511096959 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3128332558786216704, guid: 683deabb3be35a6498a279e706ce90e6,
+    type: 3}
+  m_PrefabInstance: {fileID: 31866117}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &527043784
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7070,6 +7076,7 @@ MonoBehaviour:
   - {fileID: 1043941169}
   - {fileID: 1658180471}
   - {fileID: 624067868}
+  testingCandle: {fileID: 511096959}
   difficulty: 0
 --- !u!1 &1726624695 stripped
 GameObject:
