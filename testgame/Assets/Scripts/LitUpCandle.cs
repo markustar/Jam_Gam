@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class LitUpCandle : MonoBehaviour
 {
+    public AudioSource LitUpCandleSound;
     public event EventHandler OnLit;
     public Mesh newMesh;
     public MeshFilter meshFilter;
@@ -22,6 +23,7 @@ public class LitUpCandle : MonoBehaviour
     private void Update() {
         if(PlayerIn == true && Input.GetKeyDown(KeyCode.E) && thingsChanger.candleIsActive == true)
         {
+            LitUpCandleSound.Play(0);
             meshFilter.mesh = newMesh;
             LitUp.transform.localPosition = new Vector3(0, 10f, 0);
             LitUp.intensity = 80f;
