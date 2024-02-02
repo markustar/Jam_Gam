@@ -6,7 +6,7 @@ public class EnemyAttackState : EnemyBaseState
     //The "Start" function for the attack state
     public override void EnterState(EnemyStateManager enemy)
     {
-        Debug.Log("Enemy is in the attack state");
+
         enemy.StartCoroutine(Attack(enemy));
     }
 
@@ -21,7 +21,7 @@ public class EnemyAttackState : EnemyBaseState
     //What happens when this state is exited
     public override void ExitState(EnemyStateManager enemy)
     {
-        Debug.Log("Enemy is exiting the attack state");
+
 
         //stops the coroutine on exit
 
@@ -34,7 +34,7 @@ public class EnemyAttackState : EnemyBaseState
     public IEnumerator Attack(EnemyStateManager enemy)
     {
         //call the attack event
-        Debug.Log("Attacking...");
+
         EnemyStateManager.onAttack?.Invoke();
 
         //wait a second

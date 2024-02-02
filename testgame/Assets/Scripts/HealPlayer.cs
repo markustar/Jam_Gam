@@ -16,8 +16,9 @@ public class HealPlayer : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             AudioManager.PlayAudio("Candle Healing");
-            PlayerHealth.minusHealth = -1f;
-            shooting.AbleToShoot = false;
+            PlayerHealth.IsNearCandle = true;
+            if(shooting != null)
+                shooting.AbleToShoot = false;
         }
     }
 
@@ -25,8 +26,9 @@ public class HealPlayer : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             AudioManager.StopAudio("Candle Healing");
-            PlayerHealth.minusHealth = 1f;
-            shooting.AbleToShoot = true;
+            PlayerHealth.IsNearCandle = false;
+            if (shooting != null)
+                shooting.AbleToShoot = true;
         }
     }
 
