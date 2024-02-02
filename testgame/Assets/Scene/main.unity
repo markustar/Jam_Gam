@@ -1658,6 +1658,7 @@ GameObject:
   - component: {fileID: 363434490}
   - component: {fileID: 363434489}
   - component: {fileID: 363434488}
+  - component: {fileID: 363434491}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -1687,7 +1688,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 363434486}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -1739,6 +1740,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 363434486}
   m_Mesh: {fileID: 0}
+--- !u!114 &363434491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 363434486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 572b55e6f6afba843af26858f2713eba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 263553409}
 --- !u!1001 &368370023
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2098,6 +2112,7 @@ GameObject:
   - component: {fileID: 463860344}
   - component: {fileID: 463860343}
   - component: {fileID: 463860342}
+  - component: {fileID: 463860345}
   m_Layer: 0
   m_Name: Cube (2)
   m_TagString: Untagged
@@ -2127,7 +2142,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 463860340}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -2179,6 +2194,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 463860340}
   m_Mesh: {fileID: 0}
+--- !u!114 &463860345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 463860340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 572b55e6f6afba843af26858f2713eba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 263553409}
 --- !u!1 &503456434
 GameObject:
   m_ObjectHideFlags: 0
@@ -10349,6 +10377,7 @@ GameObject:
   - component: {fileID: 1953550485}
   - component: {fileID: 1953550484}
   - component: {fileID: 1953550483}
+  - component: {fileID: 1953550486}
   m_Layer: 0
   m_Name: Cube (3)
   m_TagString: Untagged
@@ -10378,7 +10407,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1953550481}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -10430,6 +10459,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1953550481}
   m_Mesh: {fileID: 0}
+--- !u!114 &1953550486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1953550481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 572b55e6f6afba843af26858f2713eba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 263553409}
 --- !u!1 &1954161451 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3128332558786216704, guid: 683deabb3be35a6498a279e706ce90e6,
@@ -11373,6 +11415,7 @@ GameObject:
   - component: {fileID: 2138815470}
   - component: {fileID: 2138815469}
   - component: {fileID: 2138815468}
+  - component: {fileID: 2138815471}
   m_Layer: 0
   m_Name: Cube (1)
   m_TagString: Untagged
@@ -11402,7 +11445,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2138815466}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -11454,6 +11497,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2138815466}
   m_Mesh: {fileID: 0}
+--- !u!114 &2138815471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2138815466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 572b55e6f6afba843af26858f2713eba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 263553409}
 --- !u!1 &2139231422
 GameObject:
   m_ObjectHideFlags: 0

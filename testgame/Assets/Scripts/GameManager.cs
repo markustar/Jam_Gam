@@ -212,7 +212,7 @@ public class GameManager : MonoBehaviour
 
     }
 
-    private void GoToGameOver()
+    public void GoToGameOver()
     {
 
         SceneManager.LoadScene(2);
