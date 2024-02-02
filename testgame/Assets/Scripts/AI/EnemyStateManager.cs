@@ -116,6 +116,9 @@ public class EnemyStateManager : MonoBehaviour
         //decreases the health by one
         --_health;
 
+        //play take damage sound
+        AudioManager.PlayAudio("Enemy Hit");
+
         //if the health is less than or equal to 0...
         if(_health <= 0)
         {
@@ -126,6 +129,9 @@ public class EnemyStateManager : MonoBehaviour
 
     public void EnemyDeath()
     {
+        //play the death sound
+        AudioManager.PlayAudio("Enemy Death");
+
         Destroy(gameObject);
     }
 
