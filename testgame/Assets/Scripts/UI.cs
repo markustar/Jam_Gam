@@ -65,4 +65,18 @@ public class UI : MonoBehaviour
         Application.Quit();
     }
 
+    public void CloseButton()
+    {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+
+        PanelIsOpen = false;
+        StopShooting.enabled = true;
+        cameraRotation.enabled = true;
+
+        EscapePanel.SetActive(false);
+        SettingPanel.SetActive(false);
+        Time.timeScale = 1f;
+    }
+
 }
