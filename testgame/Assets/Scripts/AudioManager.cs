@@ -61,7 +61,7 @@ public class AudioManager : MonoBehaviour
             PlayAudio("Main Menu Theme");
             
         }
-        else if(scene == SceneManager.GetSceneByName("Main"))
+        else if(scene == SceneManager.GetSceneByName("main"))
         {
             StopAudio("Victory Theme");
             StopAudio("Losing Theme");
