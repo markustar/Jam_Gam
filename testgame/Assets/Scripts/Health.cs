@@ -39,7 +39,7 @@ public class Health : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        health = 5f;
+        health = 10f;
     }
 
     // Update is called once per frame
@@ -68,6 +68,9 @@ public class Health : MonoBehaviour
     public void TakeDamage()
     {
         health -= 2;
+
+        //Play getting hit sound
+        AudioManager.PlayAudio("Player Hit");
 
         CheckDeath("Game Over!", "Killed by Enemy, Try again?");
     }

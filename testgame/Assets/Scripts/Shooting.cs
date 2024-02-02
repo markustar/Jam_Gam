@@ -27,7 +27,7 @@ public class Shooting : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1") && AbleToShoot == true)
         {
-            PewPlayer.Play(0);
+            AudioManager.PlayAudio("Pew");
             Rigidbody instantiatedProjectile = Instantiate(projectile,
                                                            transform.position,
                                                            transform.rotation)

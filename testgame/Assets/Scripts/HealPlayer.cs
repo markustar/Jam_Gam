@@ -15,6 +15,7 @@ public class HealPlayer : MonoBehaviour
     private void OnTriggerEnter(Collider other) {
         if (other.gameObject.CompareTag("Player"))
         {
+            AudioManager.PlayAudio("Candle Healing");
             PlayerHealth.minusHealth = -1f;
             shooting.AbleToShoot = false;
         }
@@ -23,6 +24,7 @@ public class HealPlayer : MonoBehaviour
     private void OnTriggerExit(Collider other) {
         if (other.gameObject.CompareTag("Player"))
         {
+            AudioManager.StopAudio("Candle Healing");
             PlayerHealth.minusHealth = 1f;
             shooting.AbleToShoot = true;
         }

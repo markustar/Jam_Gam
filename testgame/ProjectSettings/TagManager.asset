@@ -9,6 +9,7 @@ TagManager:
   - Candle
   - Enemy
   - Arrow
+  - AudioSystem
   layers:
   - Default
   - TransparentFX

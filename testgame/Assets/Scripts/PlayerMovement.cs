@@ -10,12 +10,15 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement Properties")]
     public float moveSpeed = 5.0f;
     public float sprintSpeed = 10.0f; // Sprint speed
+    public AudioSource footstepSound;
+    
+    
     
     [Header("Jumping Properties")]
     public float jumpForce = 8.0f;
     public float groundCheckDistance = 0.2f;
 
-    private bool isGrounded;
+  private bool isGrounded;
 
     private void Start()
     {
@@ -42,19 +45,48 @@ public class PlayerMovement : MonoBehaviour
 
         if (isGrounded && Input.GetButtonDown("Jump"))
         {
+           
             Jump();
+           
         }
+        
     }
 
     private void Move(Vector3 moveDirection)
     {
         Vector3 movement = moveDirection;
         rb.MovePosition(transform.position + movement);
+        
+        if(movement != Vector3.zero && isGrounded)
+        {
+            if(Input.GetKey(KeyCode.LeftShift))
+            {
+                footstepSound.enabled = true;
+                footstepSound.pitch = 0.95f;
+                
+            }
+            else
+            {
+                footstepSound.enabled = true;
+                footstepSound.pitch = 0.75f;
+            }
+
+            
+            
+        }
+        else
+        {
+            footstepSound.enabled = false;
+        }
     }
 
     private void Jump()
     {
+        AudioManager.PlayAudio("Start Jump");
+
         rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         Invoke("EnableJump", 5.0f);
+
+        isGrounded = false;
     }
 }

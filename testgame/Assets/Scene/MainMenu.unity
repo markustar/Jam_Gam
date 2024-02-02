@@ -443,6 +443,128 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &596819393
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 596819395}
+  - component: {fileID: 596819396}
+  m_Layer: 0
+  m_Name: AudioSystem
+  m_TagString: AudioSystem
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &596819395
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 596819393}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -251.53384, y: 99.4356, z: 61.163963}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &596819396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 596819393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42cda4b590e76904da17d5a3b20282e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Main Menu Theme
+    clip: {fileID: 8300000, guid: e0a042c9f4d02d14097d83ba328657cc, type: 3}
+    volume: 0.96
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: Victory Theme
+    clip: {fileID: 8300000, guid: dca80db8d96facf49af2f6f6b4868bb4, type: 3}
+    volume: 0.96
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Losing Theme
+    clip: {fileID: 8300000, guid: 10fe0465070b3bf41b2215b2368e8c5d, type: 3}
+    volume: 0.96
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Pew
+    clip: {fileID: 8300000, guid: e94bbede1699dbb4a9db3b07f187441d, type: 3}
+    volume: 0.4
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Enemy Hit
+    clip: {fileID: 8300000, guid: a39b18403b1e9a94d848575dc82373e9, type: 3}
+    volume: 0.4
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Enemy Death
+    clip: {fileID: 8300000, guid: ab35d7904303de64eb6fef8460a91d3a, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Candle Lit
+    clip: {fileID: 8300000, guid: b1442b5846e041f4497b6ee45f437094, type: 3}
+    volume: 0.96
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Candle Healing
+    clip: {fileID: 8300000, guid: 1f37aa7ce1fdcf4438099f7c7c6d74c1, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: Start Jump
+    clip: {fileID: 8300000, guid: 2fa8f301d999cc847bf8010679fb3a21, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Landing
+    clip: {fileID: 8300000, guid: 801558db555c9404dbf7e15e792d0335, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Main Menu Play
+    clip: {fileID: 8300000, guid: 425d05bd3f0c53748ac577394974daf0, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Main Menu Quit
+    clip: {fileID: 8300000, guid: 127a48ed74df0cc4abd05b472cf0cca0, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Player Hit
+    clip: {fileID: 8300000, guid: a39b18403b1e9a94d848575dc82373e9, type: 3}
+    volume: 0.4
+    pitch: 0.77
+    loop: 0
+    source: {fileID: 0}
 --- !u!1 &695241855
 GameObject:
   m_ObjectHideFlags: 0
@@ -676,7 +798,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 985442448}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 596819396}
+        m_MethodName: PlayAudioEvent
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Main Menu Quit
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &985442448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1127,7 +1260,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1702836238}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 596819396}
+        m_MethodName: PlayAudioEvent
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Main Menu Play
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &1702836238
 MonoBehaviour:
   m_ObjectHideFlags: 0

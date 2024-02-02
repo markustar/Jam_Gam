@@ -29,11 +29,11 @@ public class GameOver_UI : MonoBehaviour
 
         if(titleTxt.text == "Victory!")
         {
-            WinSound.Play(0);
+            AudioManager.PlayAudio("Victory Theme");
         }
         else
-        {   
-            LoseSound.Play(0);
+        {
+            AudioManager.PlayAudio("Losing Theme");
         }
     }
 
