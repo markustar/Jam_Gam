@@ -24,8 +24,8 @@ public class EnemyAttackState : EnemyBaseState
 
 
         //stops the coroutine on exit
-
-        enemy?.StopCoroutine(Attack(enemy));
+        if(enemy != null)
+            enemy?.StopCoroutine(Attack(enemy));
         
     }
 
@@ -34,7 +34,6 @@ public class EnemyAttackState : EnemyBaseState
     public IEnumerator Attack(EnemyStateManager enemy)
     {
         //call the attack event
-
         EnemyStateManager.onAttack?.Invoke();
 
         //wait a second

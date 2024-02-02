@@ -14,7 +14,7 @@ public class Health : MonoBehaviour
     public float minusHealth = 0.5f;
     public Light playerLight;
     public float NormalizedHealth { get { return health / healthMax; } }
-    private float healthDecay = 5f;
+    private float healthDecay = 2f;
     public bool IsNearCandle = false;
 
     public event EventHandler OnHealthToggle;
