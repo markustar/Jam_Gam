@@ -164,6 +164,7 @@ public class GameManager : MonoBehaviour
             {
                 CandlesUnlit++;
                 var candle = candles[i];
+                OnToggleCandle?.Invoke(this, EventArgs.Empty);
                 candle.SetActive(true);
                 candle.GetComponentInChildren<LitUpCandle>().OnLit += GameManager_OnLit;
             }
