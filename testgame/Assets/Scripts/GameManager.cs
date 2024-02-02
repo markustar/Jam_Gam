@@ -16,21 +16,85 @@ public class GameManager : MonoBehaviour
     public string GameOver_TitleTxt { get; private set; }
     public string GameOver_MessageTxt { get; private set; }
 
-    private enum Difficulty
+    public enum Difficulty
     {
-        Test, Beginner, Intermediate, Hard, Insane
+        None, Test, Beginner, Intermediate, Hard, Insane
     }
 
-    [SerializeField] private Difficulty difficulty = Difficulty.Beginner;
+    public Difficulty difficulty = Difficulty.None;
     private void Awake()
     {
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        SceneManager.sceneUnloaded += OnSceneUnloaded;
+       
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+        SceneManager.sceneUnloaded -= OnSceneUnloaded;
+        Health.Instance.OnDead -= Instance_OnDead;
+    }
+
+    public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene == SceneManager.GetSceneByName("MainMenu"))
+        {
+           
+        }
+        //gets the candle references
+        else if (scene == SceneManager.GetSceneByName("main"))
+        {
+            //check to see what the temp difficutly was and set it to that
+            if(MainMenu.tempDifficulty == MainMenu.TempDifficulty.Beginner)
+            {
+                difficulty = Difficulty.Beginner;
+            }
+            else if(MainMenu.tempDifficulty == MainMenu.TempDifficulty.Intermediate)
+            {
+                difficulty = Difficulty.Intermediate;
+            }
+            else if(MainMenu.tempDifficulty == MainMenu.TempDifficulty.Hard)
+            {
+                difficulty = Difficulty.Hard;
+            }
+            else if(MainMenu.tempDifficulty == MainMenu.TempDifficulty.Insane)
+            {
+                difficulty = Difficulty.Insane;
+            }
+
+            Health.Instance.OnDead += Instance_OnDead;
+          
+            
+        }
+
+    }
+
+
+
+    public void OnSceneUnloaded(Scene scene)
+    {
+        Debug.Log("On Scene Unloaded:" + scene.name);
+        Debug.Log("mode");
     }
 
     private void Start()
     {
-        Health.Instance.OnDead += Instance_OnDead;
+      
         SpawnCandles();
     }
 
@@ -53,6 +117,8 @@ public class GameManager : MonoBehaviour
                 min = 5;
                 max = 8;
                 InstantiateCandles(min, max);
+                
+
                 break;
             case Difficulty.Intermediate:
                 min = 8;
@@ -79,11 +145,25 @@ public class GameManager : MonoBehaviour
         }
     }
 
+
+
+
+
     private void InstantiateCandles(int min, int max)
     {
         int spawnedCandles;
         if (min == max)
-            spawnedCandles = max;
+        {
+            for (int i = 0; i < max; i++)
+            {
+                candlesUnlit++;
+                var candle = candles[i];
+                candle.SetActive(true);
+                candle.GetComponentInChildren<LitUpCandle>().OnLit += GameManager_OnLit;
+            }
+            return;
+        }
+
         else
             spawnedCandles = Random.Range(min, max);
 
