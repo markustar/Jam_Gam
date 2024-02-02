@@ -5,7 +5,7 @@ public class EnemyChaseState : EnemyBaseState
     //The "Start" function for the attack state
     public override void EnterState(EnemyStateManager enemy)
     {
-        Debug.Log("Enemy is in the chase state");
+
     }
 
 
@@ -27,7 +27,7 @@ public class EnemyChaseState : EnemyBaseState
     //What happens when this state is exited
     public override void ExitState(EnemyStateManager enemy)
     {
-        Debug.Log("Enemy is exiting the chase state");
+  
     }
 
 

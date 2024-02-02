@@ -76,8 +76,7 @@ public class AudioManager : MonoBehaviour
 
     public void OnSceneUnloaded(Scene scene)
     {
-        Debug.Log("On Scene Unloaded:" + scene.name);
-        Debug.Log("mode");
+
     }
 
     

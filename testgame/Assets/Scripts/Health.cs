@@ -6,12 +6,18 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     public static Health Instance { get; private set; }
+
     private float timer;
     private float health;
+    private float healthMax = 50f;
     public HealthBar healthBar;
     public float minusHealth = 0.5f;
     public Light playerLight;
+    public float NormalizedHealth { get { return health / healthMax; } }
+    private float healthDecay = 2f;
+    public bool IsNearCandle = false;
 
+    public event EventHandler OnHealthToggle;
     public event EventHandler<OnDeadEventArgs> OnDead;
     public class OnDeadEventArgs : EventArgs
     {
@@ -22,6 +28,7 @@ public class Health : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        timer = healthDecay;
     }
 
     private void OnEnable()
@@ -39,30 +46,57 @@ public class Health : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        health = 50f;
+        health = healthMax;
+        healthBar.SetHealth(NormalizedHealth);
+        OnHealthToggle?.Invoke(this, EventArgs.Empty);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(health > 50f)
-        {
-            health = 50f;
-        }
-        if(playerLight.range > 50f)
-        {
-            playerLight.range = 50f;
-        }
-        healthBar.SetHealth(health);
-        timer += Time.deltaTime;
 
-        if (timer >= 3f)
+
+        timer -= Time.deltaTime;
+        if (timer < 0f)
         {
-            timer = 0f;
-            playerLight.range -= minusHealth;
-            health -= minusHealth;
+            if (!IsNearCandle)
+            {
+                //Decay
+                
+                timer = healthDecay;
+                if (playerLight.range > healthMax)
+                    playerLight.range = healthMax;
+                health -= 1f;
+                if(health < 0f)
+                    health = 0f;
+               
+                
+            }
+            else
+            {
+                //Heal
+                health += 1f;
+                if(health > healthMax)
+                    health = healthMax;
+                timer =1f;
+            }
+    
+            healthBar.SetHealth(NormalizedHealth);
+            OnHealthToggle?.Invoke(this, EventArgs.Empty);
             CheckDeath("Game Over!", "Your Flashlight ran out\nThe darkness consumed you, Try again?");
         }
+
+            
+       
+
+    }
+
+
+
+    public void ChangeHealth(int amount)
+    {
+        minusHealth += amount;
+        OnHealthToggle?.Invoke(this, EventArgs.Empty);
     }
 
     public void TakeDamage()

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -7,10 +8,15 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance {  get; private set; }
 
+    public event EventHandler OnToggleCandle;
+    public event EventHandler OnToggleEnemies;
+
+
     [SerializeField] private GameObject[] candles;
     [SerializeField] private GameObject testingCandle;
 
-    private int candlesUnlit;
+    public int EnemiesAlive { get; private set; }
+    public int CandlesUnlit { get; private set; }
     public bool PlayerLost {  get; private set; }
 
     public string GameOver_TitleTxt { get; private set; }
@@ -86,10 +92,10 @@ public class GameManager : MonoBehaviour
 
 
 
+
     public void OnSceneUnloaded(Scene scene)
     {
-        Debug.Log("On Scene Unloaded:" + scene.name);
-        Debug.Log("mode");
+
     }
 
     private void Start()
@@ -137,7 +143,7 @@ public class GameManager : MonoBehaviour
                 break;
             case Difficulty.Test:
                 testingCandle.SetActive(true);
-                candlesUnlit++;
+                CandlesUnlit++;
                 testingCandle.GetComponentInChildren<LitUpCandle>().OnLit += GameManager_OnLit;
                 break;
             default:
@@ -156,8 +162,9 @@ public class GameManager : MonoBehaviour
         {
             for (int i = 0; i < max; i++)
             {
-                candlesUnlit++;
+                CandlesUnlit++;
                 var candle = candles[i];
+                OnToggleCandle?.Invoke(this, EventArgs.Empty);
                 candle.SetActive(true);
                 candle.GetComponentInChildren<LitUpCandle>().OnLit += GameManager_OnLit;
             }
@@ -165,7 +172,7 @@ public class GameManager : MonoBehaviour
         }
 
         else
-            spawnedCandles = Random.Range(min, max);
+            spawnedCandles = UnityEngine.Random.Range(min, max);
 
         List<int> candlesSpawned = new List<int>();
 
@@ -175,7 +182,7 @@ public class GameManager : MonoBehaviour
             // Keep generating a new random number until it's unique
             do
             {
-                randCandle = Random.Range(0, candles.Length);
+                randCandle = UnityEngine.Random.Range(0, candles.Length);
                 if (!candlesSpawned.Contains(randCandle))
                 {
                     // Add the unique randCandle to the list
@@ -184,7 +191,8 @@ public class GameManager : MonoBehaviour
                 }
             } while (true);
 
-            candlesUnlit++;
+            CandlesUnlit++;
+            OnToggleCandle?.Invoke(this, EventArgs.Empty);
             var candle = candles[randCandle];
             candle.SetActive(true);
             candle.GetComponentInChildren<LitUpCandle>().OnLit += GameManager_OnLit;
@@ -193,8 +201,9 @@ public class GameManager : MonoBehaviour
 
     private void GameManager_OnLit(object sender, System.EventArgs e)
     {
-        candlesUnlit--;
-        if(candlesUnlit <= 0)
+        CandlesUnlit--;
+        OnToggleCandle?.Invoke(this, EventArgs.Empty);
+        if (CandlesUnlit <= 0)
         {
             SetTitleTxt("Victory!");
             SetMessageTxt("You have illuminated the darkness of this world!!!\nThank you for playing!");
@@ -219,5 +228,22 @@ public class GameManager : MonoBehaviour
     public void SetMessageTxt(string message)
     {
         GameOver_MessageTxt = message;
+    }
+    public void IncrementEnemies()
+    {
+        EnemiesAlive++;
+        OnToggleEnemies?.Invoke(this, EventArgs.Empty);
+    }
+
+    public void DecrementEnemies()
+    {
+        EnemiesAlive--;
+        if(EnemiesAlive <= 0 )
+        {
+            EnemiesAlive = 0;
+        }
+        OnToggleEnemies?.Invoke(this, EventArgs.Empty);
+
+
     }
 }
