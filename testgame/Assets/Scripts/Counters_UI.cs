@@ -16,7 +16,9 @@ public class Counters_UI : MonoBehaviour
         gameManager.OnToggleCandle += GameManager_OnLitCandles;
         candlesTxt.text = "0";
         enemiesTxt.text = "0";
+        
     }
+
 
 
      private void GameManager_OnLitCandles(object sender, System.EventArgs e)
